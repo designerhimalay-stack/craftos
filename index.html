@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>CraftOS Employee App | ELROI 2.0</title>
+  <meta name="description" content="Next-generation workforce and roster management platform for CraftOS field employees.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Viewport Control Bar -->
+  <header class="preview-toolbar" id="previewToolbar">
+    <div class="toolbar-brand">
+      <div class="toolbar-dot"></div>
+      <span class="toolbar-title">CraftOS ELROI 2.0 Redesign</span>
+      <span class="toolbar-tag">Interactive Prototype</span>
+    </div>
+
+    <!-- Quick Flow Navigator -->
+    <div class="flow-selector">
+      <button class="flow-btn active" data-flow="auth" id="flowAuthBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>1. Auth &amp; 2FA</span>
+      </button>
+      <button class="flow-btn" data-flow="tour" id="flowTourBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <span>2. Onboarding Tour</span>
+      </button>
+      <button class="flow-btn" data-flow="app" id="flowAppBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+        <span>3. Main App Hub</span>
+      </button>
+    </div>
+
+    <!-- Device Frame Switcher -->
+    <div class="device-toggles">
+      <button class="device-btn active" data-device="mobile" title="Apple iPhone 12 Pro Max (428 × 926)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <span>iPhone 12 Pro Max (428 × 926)</span>
+      </button>
+      <button class="device-btn" data-device="fluid" title="Fluid Responsive Screen">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <span>Fluid Screen</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- App Wrapper / Phone Shell -->
+  <main class="app-viewport-container" id="viewportContainer">
+    <div class="device-frame" id="deviceFrame">
+      
+      <!-- Phone Hardware Elements (Status Bar & Speaker Notch) -->
+      <div class="phone-notch">
+        <div class="notch-speaker"></div>
+        <div class="notch-camera"></div>
+      </div>
+      <div class="phone-status-bar">
+        <span class="status-time" id="statusClock">09:41</span>
+        <div class="status-icons">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.17 19.58 10.53 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
+          <div class="battery-pill"><div class="battery-level"></div></div>
+        </div>
+      </div>
+
+      <!-- Scrollable Phone Screen Canvas -->
+      <div class="app-screen" id="appScreen">
+
+        <!-- =================================================================== -->
+        <!-- FLOW 1: AUTHENTICATION & 2FA MODULE -->
+        <!-- =================================================================== -->
+        <section class="screen-view active" id="viewAuth">
+          <div class="auth-wrapper">
+            
+            <!-- Company Branding Hero -->
+            <div class="auth-hero">
+              <div class="brand-logo-container">
+                <div class="logo-mark">
+                  <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
+                    <circle cx="24" cy="24" r="22" fill="url(#brandGrad)" />
+                    <path d="M14 28L20 16L26 26L32 16L36 28" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                    <defs>
+                      <linearGradient id="brandGrad" x1="0" y1="0" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#C5221F"/>
+                        <stop offset="1" stop-color="#E8590C"/>
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                </div>
+                <div class="brand-text-group">
+                  <h1 class="brand-name">CraftOS</h1>
+                  <span class="brand-sub">ENGINEERING &amp; MINING SERVICES</span>
+                </div>
+              </div>
+
+              <!-- Emblem Badge -->
+              <div class="dingo-emblem">
+                <div class="emblem-inner">
+                  <span class="emblem-tag">ELROI 2.0</span>
+                  <span class="emblem-desc">Field Workforce Portal</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Auth Dynamic Step Container -->
+            <div class="auth-card-deck">
+              
+              <!-- STEP 1: Enter Email / Username -->
+              <div class="auth-card active" id="authStep1">
+                <div class="auth-card-header">
+                  <div class="step-indicator-pill">Step 1 of 4</div>
+                  <h2>Sign In</h2>
+                  <p>Access your shifts, flight tickets &amp; safety documents</p>
+                </div>
+
+                <form id="formStep1" onsubmit="event.preventDefault(); window.nextAuthStep(2);">
+                  <div class="form-group">
+                    <label for="inputEmail" class="form-label">Username / Work Email</label>
+                    <div class="input-with-icon">
+                      <svg class="field-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                      <input type="email" id="inputEmail" class="form-input" value="himalay@craftos.com" required placeholder="himalay@craftos.com">
+                    </div>
+                  </div>
+
+                  <div class="auth-actions">
+                    <button type="submit" class="btn btn-primary btn-block">
+                      <span>Continue</span>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <a href="#" class="auth-text-link" onclick="window.showToast('Password reset instructions sent to your email.'); return false;">Forgot Password?</a>
+                  </div>
+                </form>
+
+                <div class="auth-help-banner">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <div class="help-text">
+                    <strong>Need assistance?</strong>
+                    <a href="mailto:support@craftos.com">support@craftos.com</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STEP 2: Enter Password -->
+              <div class="auth-card" id="authStep2">
+                <div class="auth-card-header">
+                  <div class="step-indicator-pill">Step 2 of 4</div>
+                  <h2>Enter Password</h2>
+                  <div class="user-chip">
+                    <span class="user-chip-email" id="displayEmail">himalay@craftos.com</span>
+                    <button type="button" class="chip-edit-btn" onclick="window.nextAuthStep(1);">Change</button>
+                  </div>
+                </div>
+
+                <form id="formStep2" onsubmit="event.preventDefault(); window.nextAuthStep(3);">
+                  <div class="form-group">
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <div class="input-with-icon">
+                      <svg class="field-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                      <input type="password" id="inputPassword" class="form-input" placeholder="Enter password" value="TemporaryPass2026!" required>
+                      <button type="button" class="password-toggle-btn" onclick="window.togglePasswordVisibility('inputPassword')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="auth-actions">
+                    <button type="submit" class="btn btn-primary btn-block">
+                      <span>Sign In</span>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </button>
+                    <button type="button" class="btn btn-ghost btn-block" onclick="window.nextAuthStep(1);">Back</button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- STEP 3: Mandatory First-Time Password Reset -->
+              <div class="auth-card" id="authStep3">
+                <div class="auth-card-header">
+                  <div class="security-badge-pill">🔒 Mandatory Security Update</div>
+                  <h2>Create New Password</h2>
+                  <p>First login detected. Set a compliant master password.</p>
+                </div>
+
+                <form id="formStep3" onsubmit="event.preventDefault(); window.nextAuthStep(4);">
+                  <div class="form-group">
+                    <label for="inputNewPass" class="form-label">New Password</label>
+                    <input type="password" id="inputNewPass" class="form-input" placeholder="Enter new strong password" value="CraftOS2026!#" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputConfirmPass" class="form-label">Confirm Password</label>
+                    <input type="password" id="inputConfirmPass" class="form-input" placeholder="Re-enter new password" value="CraftOS2026!#" required>
+                  </div>
+
+                  <!-- Real-time Password Security Checklist -->
+                  <div class="password-rules-box">
+                    <span class="rules-heading">Password Security Checklist:</span>
+                    <ul class="rules-list">
+                      <li class="rule-item valid"><span class="rule-check">✓</span> Minimum 8 characters long</li>
+                      <li class="rule-item valid"><span class="rule-check">✓</span> At least 1 UPPERCASE letter (A-Z)</li>
+                      <li class="rule-item valid"><span class="rule-check">✓</span> At least 1 lowercase letter (a-z)</li>
+                      <li class="rule-item valid"><span class="rule-check">✓</span> At least 1 numeric digit (0-9)</li>
+                      <li class="rule-item valid"><span class="rule-check">✓</span> At least 1 special character (!@#$%^&amp;*)</li>
+                    </ul>
+                  </div>
+
+                  <div class="auth-actions">
+                    <button type="submit" class="btn btn-primary btn-block">
+                      <span>Update &amp; Setup 2FA</span>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- STEP 4: Two-Factor Authenticator Setup (QR & Secret Key) -->
+              <div class="auth-card" id="authStep4">
+                <div class="auth-card-header">
+                  <div class="security-badge-pill">🛡️ Two-Factor Authentication</div>
+                  <h2>Connect Authenticator</h2>
+                  <p>Scan with Google Authenticator or Microsoft Authenticator</p>
+                </div>
+
+                <!-- Interactive SVG QR Code Card -->
+                <div class="qr-enrollment-card">
+                  <div class="qr-visual">
+                    <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+                      <rect width="140" height="140" rx="12" fill="#FFFFFF"/>
+                      <!-- QR Corners -->
+                      <rect x="14" y="14" width="36" height="36" rx="4" fill="#0F172A"/>
+                      <rect x="22" y="22" width="20" height="20" rx="2" fill="#FFFFFF"/>
+                      <rect x="26" y="26" width="12" height="12" fill="#0F172A"/>
+
+                      <rect x="90" y="14" width="36" height="36" rx="4" fill="#0F172A"/>
+                      <rect x="98" y="22" width="20" height="20" rx="2" fill="#FFFFFF"/>
+                      <rect x="102" y="26" width="12" height="12" fill="#0F172A"/>
+
+                      <rect x="14" y="90" width="36" height="36" rx="4" fill="#0F172A"/>
+                      <rect x="22" y="98" width="20" height="20" rx="2" fill="#FFFFFF"/>
+                      <rect x="26" y="102" width="12" height="12" fill="#0F172A"/>
+
+                      <!-- Pattern dots -->
+                      <rect x="58" y="16" width="8" height="8" rx="2" fill="#0F172A"/>
+                      <rect x="72" y="24" width="8" height="8" rx="2" fill="#0F172A"/>
+                      <rect x="58" y="38" width="12" height="8" rx="2" fill="#0F172A"/>
+                      <rect x="16" y="58" width="10" height="8" rx="2" fill="#0F172A"/>
+                      <rect x="34" y="68" width="16" height="8" rx="2" fill="#0F172A"/>
+                      <rect x="62" y="56" width="16" height="16" rx="4" fill="#C5221F"/>
+                      <rect x="88" y="60" width="12" height="8" rx="2" fill="#0F172A"/>
+                      <rect x="110" y="70" width="14" height="8" rx="2" fill="#0F172A"/>
+                      <rect x="58" y="88" width="8" height="12" rx="2" fill="#0F172A"/>
+                      <rect x="74" y="98" width="16" height="8" rx="2" fill="#0F172A"/>
+                      <rect x="98" y="90" width="26" height="10" rx="2" fill="#0F172A"/>
+                      <rect x="94" y="112" width="12" height="14" rx="2" fill="#0F172A"/>
+                    </svg>
+                  </div>
+                  
+                  <div class="secret-key-section">
+                    <span class="secret-label">Can't scan? Copy Secret Setup Key:</span>
+                    <div class="secret-key-row">
+                      <code class="secret-code" id="secretCode">DJD4 GZ3O 6PRZ 9VKA</code>
+                      <button type="button" class="btn-copy" onclick="window.copyToClipboard('DJD4 GZ3O 6PRZ 9VKA')">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 6-Digit TOTP Input -->
+                <form id="formTotp" onsubmit="event.preventDefault(); window.nextAuthStep(5);">
+                  <div class="form-group">
+                    <label class="form-label text-center">Enter 6-Digit Verification Code</label>
+                    <div class="totp-input-grid">
+                      <input type="text" maxlength="1" class="totp-digit" value="4" autofocus>
+                      <input type="text" maxlength="1" class="totp-digit" value="8">
+                      <input type="text" maxlength="1" class="totp-digit" value="2">
+                      <input type="text" maxlength="1" class="totp-digit" value="9">
+                      <input type="text" maxlength="1" class="totp-digit" value="1">
+                      <input type="text" maxlength="1" class="totp-digit" value="7">
+                    </div>
+                  </div>
+
+                  <div class="auth-actions">
+                    <button type="submit" class="btn btn-primary btn-block">
+                      <span>Verify &amp; Activate 2FA</span>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                    </button>
+                  </div>
+                </form>
+              </div>
+
+              <!-- STEP 5: Emergency Backup Codes Vault -->
+              <div class="auth-card" id="authStep5">
+                <div class="auth-card-header">
+                  <div class="security-badge-pill pill-amber">⚠️ Offline Emergency Codes</div>
+                  <h2>Save Backup Codes</h2>
+                  <p>Store these in case you lose mobile phone or reception on remote mining sites.</p>
+                </div>
+
+                <div class="backup-codes-vault">
+                  <div class="code-pill"><code>K92M-481X</code></div>
+                  <div class="code-pill"><code>P77B-902L</code></div>
+                  <div class="code-pill"><code>W43T-188Q</code></div>
+                  <div class="code-pill"><code>R55N-672Z</code></div>
+                  <div class="code-pill"><code>M19Y-334V</code></div>
+                </div>
+
+                <div class="vault-actions">
+                  <button type="button" class="btn btn-outline btn-block" onclick="window.copyToClipboard('K92M-481X\nP77B-902L\nW43T-188Q\nR55N-672Z\nM19Y-334V');">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    <span>Copy All Codes</span>
+                  </button>
+
+                  <button type="button" class="btn btn-primary btn-block" onclick="window.switchFlow('tour'); window.showToast('Security setup complete! Welcome to CraftOS.');">
+                    <span>Continue to App Tour</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Footer Address & Policy Info -->
+            <footer class="auth-footer">
+              <p>Level 2, 30 Delhi Street, West Perth, WA 6005</p>
+              <p>&copy; 2026 CraftOS. <a href="#">Privacy Policy</a> &bull; <a href="#">Terms</a></p>
+            </footer>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- FLOW 2: GUIDED ONBOARDING TOUR (9 SLIDES) -->
+        <!-- =================================================================== -->
+        <section class="screen-view" id="viewTour">
+          <div class="tour-container">
+            
+            <!-- Top Tour Bar with Skip -->
+            <div class="tour-top-bar">
+              <span class="tour-step-count" id="tourProgressText">Slide 1 of 9</span>
+              <button class="tour-skip-btn" onclick="window.switchFlow('app');">Skip Tour ✕</button>
+            </div>
+
+            <!-- Tour Carousel Track -->
+            <div class="tour-carousel-stage">
+              <div class="tour-slide-track" id="tourSlideTrack">
+                
+                <!-- Slide 1: Welcome -->
+                <div class="tour-slide active" data-slide="1" style="--theme-accent: #C5221F;">
+                  <div class="slide-art">
+                    <div class="art-circle">
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>
+                    </div>
+                  </div>
+                  <h2 class="slide-title">Welcome to the CraftOS Employee App!</h2>
+                  <p class="slide-body">This app is designed to keep you organised and connected, providing all the tools you need for seamless interaction with the CraftOS planning system.</p>
+                </div>
+
+                <!-- Slide 2: Profile -->
+                <div class="tour-slide" data-slide="2" style="--theme-accent: #E8590C;">
+                  <div class="slide-art">
+                    <div class="art-circle">
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                  </div>
+                  <h2 class="slide-title">Complete Profile Management</h2>
+                  <p class="slide-body">Keep your details up-to-date effortlessly. View and edit your personal information, emergency contacts, and contact numbers in seconds.</p>
+                </div>
+
+                <!-- Slide 3: Qualifications -->
+                <div class="tour-slide" data-slide="3" style="--theme-accent: #0284C7;">
+                  <div class="slide-art">
+                    <div class="art-circle">
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </div>
+                  </div>
+                  <h2 class="slide-title">Qualifications &amp; Tickets Wallet</h2>
+                  <p class="slide-body">Manage your certificates and licenses seamlessly. Upload new tickets directly from your mobile camera and monitor expiry countdowns.</p>
+                </div>
+
+                <!-- Slide 4: Unavailability -->
+                <div class="tour-slide" data-slide="4" style="--theme-accent: #7C3AED;">
+                  <div class="slide-art">
+                    <div class="art-circle">
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </div>
+                  </div>
+                  <h2 class="slide-title">Plan Unavailability &amp; RNR</h2>
+                  <p class="slide-body">Submit your upcoming leave or RNR periods with simple date pickers, helping the operations coordinators roster you accurately.</p>
+                </div>
+
+                <!-- Slide 5: Training -->
+                <div class="tour-slide" data-slide="5" style="--theme-accent: #059669;">
+                  <div class="slide-art">
+                    <div class="art-circle">
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    </div>
+                  </div>
+                  <h2 class="slide-title">Training Schedule</h2>
+                  <p class="slide-body">Stay on top of mandatory site inductions and skill refreshers with instant training itineraries and venue locations.</p>
+                </div>
+
+                <!-- Slide 6: Dashboard -->
+                <div class="tour-slide" data-slide="6" style="--theme-accent: #C5221F;">
+                  <div class="slide-art">
+                    <div class="art-circle">
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                    </div>
+                  </div>
+                  <h2 class="slide-title">Central Field Dashboard</h2>
+                  <p class="slide-body">Your operational hub. View upcoming rosters, mobilization countdowns, and tap any calendar day to inspect shifts.</p>
+                </div>
+
+                <!-- Slide 7: Roster -->
+                <div class="tour-slide" data-slide="7" style="--theme-accent: #0284C7;">
+                  <div class="slide-art">
+                    <div class="art-circle">
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                    </div>
+                  </div>
+                  <h2 class="slide-title">Work Roster Management</h2>
+                  <p class="slide-body">Confirm roster offers with 1-tap, check flight times, transport bookings, and camp room assignments effortlessly.</p>
+                </div>
+
+                <!-- Slide 8: Library -->
+                <div class="tour-slide" data-slide="8" style="--theme-accent: #D97706;">
+                  <div class="slide-art">
+                    <div class="art-circle">
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    </div>
+                  </div>
+                  <h2 class="slide-title">Resource Library</h2>
+                  <p class="slide-body">A one-stop shop for essential resources. Access CraftOS OH&amp;S safety documentation, SWMS, JSEAs, and site announcements anytime.</p>
+                </div>
+
+                <!-- Slide 9: Notifications -->
+                <div class="tour-slide" data-slide="9" style="--theme-accent: #C5221F;">
+                  <div class="slide-art">
+                    <div class="art-circle">
+                      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                    </div>
+                  </div>
+                  <h2 class="slide-title">Instant Notifications</h2>
+                  <p class="slide-body">Stay informed and act quickly. View all urgent notifications, confirm flight tickets, and communicate directly with planning coordinators.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Carousel Pagination Dots -->
+            <div class="tour-dots" id="tourDotsContainer">
+              <span class="dot active" onclick="window.goToSlide(1)"></span>
+              <span class="dot" onclick="window.goToSlide(2)"></span>
+              <span class="dot" onclick="window.goToSlide(3)"></span>
+              <span class="dot" onclick="window.goToSlide(4)"></span>
+              <span class="dot" onclick="window.goToSlide(5)"></span>
+              <span class="dot" onclick="window.goToSlide(6)"></span>
+              <span class="dot" onclick="window.goToSlide(7)"></span>
+              <span class="dot" onclick="window.goToSlide(8)"></span>
+              <span class="dot" onclick="window.goToSlide(9)"></span>
+            </div>
+
+            <!-- Tour Bottom Navigation Buttons -->
+            <div class="tour-nav-bar">
+              <button class="btn btn-outline tour-prev-btn" id="tourPrevBtn" onclick="window.stepTour(-1);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+                <span>Previous</span>
+              </button>
+              <button class="btn btn-primary tour-next-btn" id="tourNextBtn" onclick="window.stepTour(1);">
+                <span id="tourNextText">Next Feature</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+              </button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- FLOW 3: MAIN APP HUB (DASHBOARD, ROSTERS, CHAT, NOTIFICATIONS, ETC.) -->
+        <!-- =================================================================== -->
+        <section class="screen-view" id="viewApp">
+          
+          <!-- Sticky Enterprise Header -->
+          <header class="app-nav-header">
+            <div class="header-left">
+              <div class="app-brand-mark" onclick="window.switchTab('dashboard')">
+                <svg width="24" height="24" viewBox="0 0 48 48" fill="none">
+                  <circle cx="24" cy="24" r="22" fill="#C5221F"/>
+                  <path d="M14 28L20 16L26 26L32 16L36 28" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="header-brand-title">CraftOS</span>
+              </div>
+            </div>
+
+            <div class="header-right">
+              <!-- Sync Button with Micro-Animation -->
+              <button class="header-icon-btn" id="syncBtn" onclick="window.triggerSync()" title="Sync Rosters &amp; Shifts">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="syncIcon"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+              </button>
+
+              <!-- Notifications Icon with Badge -->
+              <button class="header-icon-btn" onclick="window.switchTab('notifications')" title="Notifications">
+                <div class="btn-icon-container">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                  <span class="badge-dot" id="unreadBadgeCount">2</span>
+                </div>
+              </button>
+
+              <!-- Slide-in Drawer Toggle -->
+              <button class="header-icon-btn" onclick="window.toggleDrawer(true)" title="Open Menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+              </button>
+            </div>
+          </header>
+
+          <!-- Main App Scrollable Tab Viewport -->
+          <div class="tab-viewport-scroll" id="tabViewportScroll">
+
+            <!-- TAB 1: OPERATIONS DASHBOARD & CALENDAR -->
+            <div class="tab-panel active" id="tabDashboard">
+              
+              <!-- Worker Greeting Card with Mobilization Countdown Hero -->
+              <div class="dashboard-hero-card">
+                <div class="hero-content">
+                  <div class="greeting-row">
+                    <span class="user-salutation">Welcome back,</span>
+                    <h2 class="worker-full-name">Chintan Pachchigar</h2>
+                  </div>
+                  <div class="worker-chips-row">
+                    <span class="badge-role">Boilermaker</span>
+                    <span class="badge-empid">#L02737</span>
+                    <span class="badge-status-live">🟢 On Active Roster</span>
+                  </div>
+                </div>
+
+                <!-- Next Mobilization Countdown Banner -->
+                <div class="mob-countdown-bar" onclick="window.openJobDetailModal('TEST-09991', 'PILBARA MINERALS', 'Testing LV Appearance', '16-06-2026 – 22-06-2026', 'Boilermaker', 4)">
+                  <div class="mob-icon-wrap">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  </div>
+                  <div class="mob-text-group">
+                    <span class="mob-label">Next Swing: Pilbara Minerals</span>
+                    <strong class="mob-countdown">Mobilising in 4 Days</strong>
+                  </div>
+                  <div class="mob-chevron">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interactive Shift Calendar Module -->
+              <div class="section-card calendar-card">
+                <div class="calendar-header-bar">
+                  <div class="calendar-title-wrap">
+                    <h3 class="card-heading">Shift Schedule</h3>
+                    <span class="cal-month-indicator">June 2026</span>
+                  </div>
+                  
+                  <!-- Activity Filter Dropdown -->
+                  <div class="cal-filter-select-wrap">
+                    <select id="calActivityFilter" class="form-select-sm" onchange="window.filterCalendarEvents(this.value)">
+                      <option value="all">All Activities</option>
+                      <option value="confirmed">Confirmed Rosters</option>
+                      <option value="training">Training Courses</option>
+                      <option value="leave">Leave / RNR</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Calendar Weekday Header -->
+                <div class="calendar-days-row">
+                  <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                </div>
+
+                <!-- Calendar Dates Grid -->
+                <div class="calendar-dates-grid" id="calendarGrid">
+                  <!-- Row 1: 1 to 7 -->
+                  <div class="cal-cell" data-date="2026-06-01"><span class="cell-day">1</span></div>
+                  <div class="cal-cell" data-date="2026-06-02"><span class="cell-day">2</span></div>
+                  <div class="cal-cell has-event event-leave" data-date="2026-06-03" onclick="window.openDateDetail('leave', '3rd Jun 2026')">
+                    <span class="cell-day">3</span>
+                    <span class="event-pill pill-leave">RNR</span>
+                  </div>
+                  <div class="cal-cell has-event event-leave" data-date="2026-06-04" onclick="window.openDateDetail('leave', '4th Jun 2026')">
+                    <span class="cell-day">4</span>
+                    <span class="event-pill pill-leave">RNR</span>
+                  </div>
+                  <div class="cal-cell" data-date="2026-06-05"><span class="cell-day">5</span></div>
+                  <div class="cal-cell" data-date="2026-06-06"><span class="cell-day">6</span></div>
+                  <div class="cal-cell" data-date="2026-06-07"><span class="cell-day">7</span></div>
+
+                  <!-- Row 2: 8 to 14 -->
+                  <div class="cal-cell" data-date="2026-06-08"><span class="cell-day">8</span></div>
+                  <div class="cal-cell" data-date="2026-06-09"><span class="cell-day">9</span></div>
+                  <div class="cal-cell" data-date="2026-06-10"><span class="cell-day">10</span></div>
+                  <div class="cal-cell cal-today has-event event-training" data-date="2026-06-11" onclick="window.openDateDetail('training', '11th Jun 2026')">
+                    <span class="cell-day">11</span>
+                    <span class="event-pill pill-training">Training</span>
+                  </div>
+                  <div class="cal-cell" data-date="2026-06-12"><span class="cell-day">12</span></div>
+                  <div class="cal-cell" data-date="2026-06-13"><span class="cell-day">13</span></div>
+                  <div class="cal-cell" data-date="2026-06-14"><span class="cell-day">14</span></div>
+
+                  <!-- Row 3: 15 to 21 (Confirmed Roster Span) -->
+                  <div class="cal-cell" data-date="2026-06-15"><span class="cell-day">15</span></div>
+                  <div class="cal-cell has-event event-roster active-roster-span" data-date="2026-06-16" onclick="window.openDateDetail('roster', '16th Jun 2026')">
+                    <span class="cell-day">16</span>
+                    <span class="event-pill pill-roster">Roster</span>
+                  </div>
+                  <div class="cal-cell has-event event-roster active-roster-span" data-date="2026-06-17" onclick="window.openDateDetail('roster', '17th Jun 2026')">
+                    <span class="cell-day">17</span>
+                    <span class="event-pill pill-roster">Roster</span>
+                  </div>
+                  <div class="cal-cell has-event event-roster active-roster-span" data-date="2026-06-18" onclick="window.openDateDetail('roster', '18th Jun 2026')">
+                    <span class="cell-day">18</span>
+                    <span class="event-pill pill-roster">Roster</span>
+                  </div>
+                  <div class="cal-cell has-event event-roster active-roster-span" data-date="2026-06-19" onclick="window.openDateDetail('roster', '19th Jun 2026')">
+                    <span class="cell-day">19</span>
+                    <span class="event-pill pill-roster">Roster</span>
+                  </div>
+                  <div class="cal-cell has-event event-roster active-roster-span" data-date="2026-06-20" onclick="window.openDateDetail('roster', '20th Jun 2026')">
+                    <span class="cell-day">20</span>
+                    <span class="event-pill pill-roster">Roster</span>
+                  </div>
+                  <div class="cal-cell has-event event-roster active-roster-span" data-date="2026-06-21" onclick="window.openDateDetail('roster', '21st Jun 2026')">
+                    <span class="cell-day">21</span>
+                    <span class="event-pill pill-roster">Roster</span>
+                  </div>
+
+                  <!-- Row 4: 22 to 28 -->
+                  <div class="cal-cell has-event event-roster active-roster-span" data-date="2026-06-22" onclick="window.openDateDetail('roster', '22nd Jun 2026')">
+                    <span class="cell-day">22</span>
+                    <span class="event-pill pill-roster">Roster</span>
+                  </div>
+                  <div class="cal-cell" data-date="2026-06-23"><span class="cell-day">23</span></div>
+                  <div class="cal-cell" data-date="2026-06-24"><span class="cell-day">24</span></div>
+                  <div class="cal-cell" data-date="2026-06-25"><span class="cell-day">25</span></div>
+                  <div class="cal-cell" data-date="2026-06-26"><span class="cell-day">26</span></div>
+                  <div class="cal-cell" data-date="2026-06-27"><span class="cell-day">27</span></div>
+                  <div class="cal-cell" data-date="2026-06-28"><span class="cell-day">28</span></div>
+
+                  <!-- Row 5: 29 to 31 -->
+                  <div class="cal-cell" data-date="2026-06-29"><span class="cell-day">29</span></div>
+                  <div class="cal-cell" data-date="2026-06-30"><span class="cell-day">30</span></div>
+                  <div class="cal-cell cal-empty"></div>
+                  <div class="cal-cell cal-empty"></div>
+                  <div class="cal-cell cal-empty"></div>
+                  <div class="cal-cell cal-empty"></div>
+                  <div class="cal-cell cal-empty"></div>
+                </div>
+
+                <!-- Calendar Legend -->
+                <div class="cal-legend-bar">
+                  <div class="legend-item"><span class="dot-indicator dot-roster"></span> Confirmed Roster</div>
+                  <div class="legend-item"><span class="dot-indicator dot-training"></span> Training</div>
+                  <div class="legend-item"><span class="dot-indicator dot-leave"></span> Leave / RNR</div>
+                </div>
+              </div>
+
+              <!-- Quick Action Cards Grid -->
+              <div class="quick-nav-grid">
+                <button class="quick-card" onclick="window.switchTab('rosters')">
+                  <div class="quick-card-icon icon-blue">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                  </div>
+                  <div class="quick-card-text">
+                    <strong>My Rosters</strong>
+                    <span>3 Active Assignments</span>
+                  </div>
+                </button>
+
+                <button class="quick-card" onclick="window.switchTab('messages')">
+                  <div class="quick-card-icon icon-red">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <div class="quick-card-text">
+                    <strong>Support Desk</strong>
+                    <span>Live Chat &bull; 1 Active</span>
+                  </div>
+                </button>
+
+                <button class="quick-card" onclick="window.openNewUnavailabilityModal()">
+                  <div class="quick-card-icon icon-purple">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  </div>
+                  <div class="quick-card-text">
+                    <strong>Book Leave</strong>
+                    <span>Schedule RNR</span>
+                  </div>
+                </button>
+
+                <button class="quick-card" onclick="window.switchTab('qualifications')">
+                  <div class="quick-card-icon icon-green">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                  </div>
+                  <div class="quick-card-text">
+                    <strong>Tickets Wallet</strong>
+                    <span>1 Expiring Soon</span>
+                  </div>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- TAB 2: ROSTERS & MOBILISATION HUB -->
+            <div class="tab-panel" id="tabRosters">
+              <div class="panel-header-row">
+                <div>
+                  <h2 class="section-heading">Work Rosters</h2>
+                  <span class="sub-heading">Assigned client sites &amp; swing schedules</span>
+                </div>
+              </div>
+
+              <!-- Roster Filter Pills -->
+              <div class="filter-pill-bar">
+                <button class="filter-pill active" onclick="window.filterRosters('all', this)">All (3)</button>
+                <button class="filter-pill" onclick="window.filterRosters('active', this)">Active (3)</button>
+                <button class="filter-pill" onclick="window.filterRosters('pending', this)">Action Required (2)</button>
+                <button class="filter-pill" onclick="window.filterRosters('completed', this)">Completed (0)</button>
+              </div>
+
+              <!-- Roster Cards Feed -->
+              <div class="roster-cards-feed" id="rosterCardsFeed">
+                
+                <!-- Card 1: Pilbara Minerals (Active Job) -->
+                <div class="roster-card card-elevated" data-pending="false">
+                  <div class="roster-card-header">
+                    <div class="job-id-group">
+                      <span class="job-code-tag">TEST-09991</span>
+                      <h3 class="job-site-name">PILBARA MINERALS</h3>
+                    </div>
+                    <span class="status-badge badge-active">Active</span>
+                  </div>
+
+                  <div class="roster-card-body">
+                    <h4 class="job-title-text">Testing LV Appearance</h4>
+                    
+                    <div class="roster-meta-grid">
+                      <div class="meta-item">
+                        <span class="meta-label">Dates:</span>
+                        <strong class="meta-value">16-06-2026 – 22-06-2026</strong>
+                      </div>
+                      <div class="meta-item">
+                        <span class="meta-label">Role:</span>
+                        <strong class="meta-value">Boilermaker</strong>
+                      </div>
+                      <div class="meta-item">
+                        <span class="meta-label">Mob Count:</span>
+                        <strong class="meta-value text-primary">4 Days to Mob</strong>
+                      </div>
+                    </div>
+
+                    <div class="action-alert-bar alert-green">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                      <span>No confirmation action required</span>
+                    </div>
+                  </div>
+
+                  <div class="roster-card-footer">
+                    <button class="btn btn-outline btn-sm" onclick="window.openJobDetailModal('TEST-09991', 'PILBARA MINERALS', 'Testing LV Appearance', '16-06-2026 – 22-06-2026', 'Boilermaker', 4)">
+                      <span>View Details</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                    <button class="btn btn-ghost-primary btn-sm" onclick="window.openJobChat('TEST-09991', 'PILBARA MINERALS', 'Testing LV Appearance')">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span>Inquire</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Card 2: BHP Area C (Action Required) -->
+                <div class="roster-card card-elevated" data-pending="true">
+                  <div class="roster-card-header">
+                    <div class="job-id-group">
+                      <span class="job-code-tag">BHP-AC-4821</span>
+                      <h3 class="job-site-name">BHP AREA C</h3>
+                    </div>
+                    <span class="status-badge badge-amber">Action Req</span>
+                  </div>
+
+                  <div class="roster-card-body">
+                    <h4 class="job-title-text">Fixed Plant Chute Replacement</h4>
+                    
+                    <div class="roster-meta-grid">
+                      <div class="meta-item">
+                        <span class="meta-label">Dates:</span>
+                        <strong class="meta-value">01-07-2026 – 14-07-2026</strong>
+                      </div>
+                      <div class="meta-item">
+                        <span class="meta-label">Role:</span>
+                        <strong class="meta-value">Boilermaker / Welder</strong>
+                      </div>
+                      <div class="meta-item">
+                        <span class="meta-label">Mob Count:</span>
+                        <strong class="meta-value">19 Days to Mob</strong>
+                      </div>
+                    </div>
+
+                    <div class="action-alert-bar alert-amber">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                      <span>3 Confirmation Requests Pending</span>
+                    </div>
+                  </div>
+
+                  <div class="roster-card-footer">
+                    <button class="btn btn-outline btn-sm" onclick="window.switchTab('notifications')">
+                      <span>Review Confirmations</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                    </button>
+                    <button class="btn btn-ghost-primary btn-sm" onclick="window.openJobChat('BHP-AC-4821', 'BHP AREA C', 'Fixed Plant Chute Replacement')">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      <span>Inquire</span>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- TAB 3: MESSAGES & LIVE SUPPORT DESK -->
+            <div class="tab-panel" id="tabMessages">
+              <div class="panel-header-row">
+                <div>
+                  <h2 class="section-heading">Support Desk</h2>
+                  <span class="sub-heading">Direct communications with CraftOS operations</span>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="window.openNewConversationModal()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span>New Message</span>
+                </button>
+              </div>
+
+              <!-- Message Search Bar -->
+              <div class="search-input-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" placeholder="Search conversations by subject or job..." oninput="window.searchMessages(this.value)">
+              </div>
+
+              <!-- Filter Tabs (All / Open / Closed) -->
+              <div class="filter-pill-bar">
+                <button class="filter-pill active" onclick="window.filterThreads('all', this)">All</button>
+                <button class="filter-pill" onclick="window.filterThreads('open', this)">Open (1)</button>
+                <button class="filter-pill" onclick="window.filterThreads('closed', this)">Closed (4)</button>
+              </div>
+
+              <!-- Conversation Threads List -->
+              <div class="threads-list" id="threadsContainer">
+                
+                <!-- Thread 1: Planning (Open) -->
+                <div class="thread-item thread-unread" data-status="open" onclick="window.openChatThread('Planning', 'Inquiry: TEST-09991 (Pilbara Minerals)', 'I have a question regarding my upcoming roster for TEST-09991.')">
+                  <div class="thread-dept-avatar avatar-planning">PL</div>
+                  <div class="thread-content">
+                    <div class="thread-top">
+                      <strong class="thread-dept-title">Planning Desk &bull; Live</strong>
+                      <span class="thread-timestamp">09:17 AM</span>
+                    </div>
+                    <h4 class="thread-subject">Inquiry: TEST-09991 (Pilbara Minerals)</h4>
+                    <p class="thread-snippet">Sarah Jenkins: Hi Chintan! Your flights are confirmed for Tuesday morning...</p>
+                  </div>
+                  <div class="unread-pip"></div>
+                </div>
+
+                <!-- Thread 2: Compliance (Closed) -->
+                <div class="thread-item" data-status="closed" onclick="window.openChatThread('Compliance', 'Confined Space Ticket Verification', 'Please find attached my updated Confined Space certificate.')">
+                  <div class="thread-dept-avatar avatar-compliance">CP</div>
+                  <div class="thread-content">
+                    <div class="thread-top">
+                      <strong class="thread-dept-title">Compliance Desk</strong>
+                      <span class="thread-timestamp">Yesterday</span>
+                    </div>
+                    <h4 class="thread-subject">Confined Space Ticket Verification</h4>
+                    <p class="thread-snippet">Compliance Officer: Ticket verified and loaded into your wallet.</p>
+                  </div>
+                </div>
+
+                <!-- Thread 3: HSE (Closed) -->
+                <div class="thread-item" data-status="closed" onclick="window.openChatThread('HSE', 'Heat Stress Awareness Refresher', 'Acknowledged receipt of safety bulletin.')">
+                  <div class="thread-dept-avatar avatar-hse">HS</div>
+                  <div class="thread-content">
+                    <div class="thread-top">
+                      <strong class="thread-dept-title">HSE Safety Desk</strong>
+                      <span class="thread-timestamp">04 Jun</span>
+                    </div>
+                    <h4 class="thread-subject">Heat Stress Awareness Refresher</h4>
+                    <p class="thread-snippet">HSE Team: Thank you for completing your online safety acknowledgment.</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- TAB 4: NOTIFICATIONS CENTER -->
+            <div class="tab-panel" id="tabNotifications">
+              <div class="panel-header-row">
+                <div>
+                  <h2 class="section-heading">Notifications</h2>
+                  <span class="sub-heading">Actionable travel &amp; mobilization alerts</span>
+                </div>
+                <button class="btn btn-ghost btn-xs" onclick="window.markAllAsRead()">Mark All Read</button>
+              </div>
+
+              <!-- Unread / Read Segmented Switch -->
+              <div class="notif-segmented-control">
+                <button class="segment-btn active" id="notifUnreadTab" onclick="window.switchNotifTab('unread')">
+                  <span>Unread</span>
+                  <span class="segment-pill" id="unreadNotifPill">2</span>
+                </button>
+                <button class="segment-btn" id="notifReadTab" onclick="window.switchNotifTab('read')">
+                  <span>Archived (51)</span>
+                </button>
+              </div>
+
+              <!-- Notification Category Filter Bar -->
+              <div class="filter-pill-bar">
+                <button class="filter-pill active" onclick="window.filterNotifs('all', this)">All</button>
+                <button class="filter-pill" onclick="window.filterNotifs('mobilisation', this)">Mobilisation</button>
+                <button class="filter-pill" onclick="window.filterNotifs('travel', this)">Travel / Flights</button>
+                <button class="filter-pill" onclick="window.filterNotifs('compliance', this)">Safety &amp; Compliance</button>
+              </div>
+
+              <!-- Notifications Actionable Feed -->
+              <div class="notifications-feed">
+                
+                <!-- Notification 1: Designated Driver Request -->
+                <div class="notif-card card-elevated unread-notif" id="notifCard1" data-category="mobilisation">
+                  <div class="notif-card-header">
+                    <div class="notif-type-icon icon-amber">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <div class="notif-meta">
+                      <span class="notif-category">Mobilisation Notice &bull; BHP Area C</span>
+                      <span class="notif-time">10 mins ago</span>
+                    </div>
+                  </div>
+
+                  <div class="notif-card-body">
+                    <h4 class="notif-title">Designated Vehicle Driver Confirmation</h4>
+                    <p class="notif-desc">You are requested to be the designated site vehicle driver for the Newman airport to BHP Area C camp transfer on Tuesday morning.</p>
+                  </div>
+
+                  <div class="notif-card-actions">
+                    <button class="btn btn-sm btn-primary" onclick="window.markNotifRead('notifCard1')">Confirm Driver</button>
+                    <button class="btn btn-sm btn-ghost" onclick="window.showToast('Driver decline noted.'); this.closest('.notif-card').remove();">Decline</button>
+                  </div>
+                </div>
+
+                <!-- Notification 2: Flight Itinerary Confirmation -->
+                <div class="notif-card card-elevated unread-notif" id="notifCard2" data-category="travel">
+                  <div class="notif-card-header">
+                    <div class="notif-type-icon icon-blue">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    </div>
+                    <div class="notif-meta">
+                      <span class="notif-category">Flight Confirmation &bull; Qantas</span>
+                      <span class="notif-time">2 hours ago</span>
+                    </div>
+                  </div>
+
+                  <div class="notif-card-body">
+                    <h4 class="notif-title">Flight QF1924 (Perth -> Newman)</h4>
+                    <p class="notif-desc">Departs Perth Terminal 4 at 06:15 AM on 16/06/2026. Please confirm itinerary receipt for ground logistics.</p>
+                  </div>
+
+                  <div class="notif-card-actions">
+                    <button class="btn btn-sm btn-primary" onclick="window.markNotifRead('notifCard2')">Confirm Receipt</button>
+                    <button class="btn btn-sm btn-outline" onclick="window.showToast('Itinerary details sent via SMS.');">View Itinerary</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- TAB 5: UNAVAILABILITY & LEAVE SCHEDULER -->
+            <div class="tab-panel" id="tabUnavailability">
+              <div class="panel-header-row">
+                <div>
+                  <h2 class="section-heading">Unavailability / RNR</h2>
+                  <span class="sub-heading">Scheduled leave &amp; rest periods</span>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="window.openNewUnavailabilityModal()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span>Book Leave</span>
+                </button>
+              </div>
+
+              <!-- Unavailability List -->
+              <div class="unavail-list" id="unavailList">
+                
+                <div class="unavail-card">
+                  <div class="unavail-card-header">
+                    <div class="unavail-dates">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                      <strong>03/06/2026 to 04/06/2026</strong>
+                    </div>
+                    <span class="leave-tag tag-rnr">RNR Period</span>
+                  </div>
+                  <div class="unavail-card-body">
+                    <div class="unavail-detail-row">
+                      <span class="detail-label">Reason:</span>
+                      <span class="detail-val">Rest &amp; Recovery</span>
+                    </div>
+                    <div class="unavail-detail-row">
+                      <span class="detail-label">Notes:</span>
+                      <span class="detail-val">Scheduled post-swing recovery.</span>
+                    </div>
+                  </div>
+                  <div class="unavail-card-footer">
+                    <button class="btn-icon-action text-danger" onclick="window.showToast('Leave entry deleted.'); this.closest('.unavail-card').remove();">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                      <span>Delete</span>
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- TAB 6: QUALIFICATIONS & TICKETS WALLET -->
+            <div class="tab-panel" id="tabQualifications">
+              <div class="panel-header-row">
+                <div>
+                  <h2 class="section-heading">Qualifications Wallet</h2>
+                  <span class="sub-heading">Industry tickets &amp; site inductions</span>
+                </div>
+                <button class="btn btn-primary btn-sm" onclick="window.openUploadQualModal()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  <span>Upload Ticket</span>
+                </button>
+              </div>
+
+              <!-- Qualifications Grid -->
+              <div class="qual-grid">
+                
+                <div class="qual-card">
+                  <div class="qual-header">
+                    <span class="qual-type-tag">Trade Certification</span>
+                    <span class="status-badge badge-active">Verified</span>
+                  </div>
+                  <h4 class="qual-title">Certificate III in Engineering – Heavy Fabrication</h4>
+                  <div class="qual-details">
+                    <span>Issued: TAFE WA</span>
+                    <span>Status: Permanent / Lifetime</span>
+                  </div>
+                </div>
+
+                <div class="qual-card qual-expiring">
+                  <div class="qual-header">
+                    <span class="qual-type-tag">High Risk Work</span>
+                    <span class="status-badge badge-amber">Expires in 28 Days</span>
+                  </div>
+                  <h4 class="qual-title">Working at Heights (RIIWHS204E)</h4>
+                  <div class="qual-details">
+                    <span>Expiry: 15/07/2026</span>
+                    <button class="btn-renew-link" onclick="window.openUploadQualModal()">Upload Renewal</button>
+                  </div>
+                </div>
+
+                <div class="qual-card">
+                  <div class="qual-header">
+                    <span class="qual-type-tag">High Risk Work</span>
+                    <span class="status-badge badge-active">Verified</span>
+                  </div>
+                  <h4 class="qual-title">Confined Space Entry (RIIWHS202E)</h4>
+                  <div class="qual-details">
+                    <span>Expiry: 30/06/2028</span>
+                    <span>Refresher Current</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- TAB 7: EMPLOYEE PROFILE & DOSSIER -->
+            <div class="tab-panel" id="tabProfile">
+              <div class="profile-dossier-card">
+                <div class="profile-avatar-banner">
+                  <div class="big-avatar">CP</div>
+                  <div class="profile-hero-meta">
+                    <h3>Chintan Pachchigar</h3>
+                    <span class="role-badge">Boilermaker &bull; Full-Time</span>
+                    <span class="emp-id-tag">ID: #L02737</span>
+                  </div>
+                </div>
+
+                <div class="dossier-table">
+                  <div class="dossier-row">
+                    <span class="dossier-key">Date of Birth</span>
+                    <strong class="dossier-val">31/01/1995 (31 yrs)</strong>
+                  </div>
+                  <div class="dossier-row">
+                    <span class="dossier-key">Email</span>
+                    <strong class="dossier-val">himalay@craftos.com</strong>
+                  </div>
+                  <div class="dossier-row">
+                    <span class="dossier-key">Mobile Phone</span>
+                    <strong class="dossier-val">0412 345 678</strong>
+                  </div>
+                  <div class="dossier-row">
+                    <span class="dossier-key">On-Site Radio / Phone</span>
+                    <strong class="dossier-val">Channel 14 / Ext 4821</strong>
+                  </div>
+                  <div class="dossier-row">
+                    <span class="dossier-key">Notification Method</span>
+                    <strong class="dossier-val">Push Notification &amp; SMS</strong>
+                  </div>
+                  <div class="dossier-row">
+                    <span class="dossier-key">Start Date</span>
+                    <strong class="dossier-val">01/02/2026</strong>
+                  </div>
+                  <div class="dossier-row">
+                    <span class="dossier-key">Emergency Contact 1</span>
+                    <strong class="dossier-val">Priya Pachchigar (Spouse) - 0498 765 432</strong>
+                  </div>
+                  <div class="dossier-row">
+                    <span class="dossier-key">Emergency Contact 2</span>
+                    <strong class="dossier-val">Anil Pachchigar (Brother) - 0487 654 321</strong>
+                  </div>
+                </div>
+
+                <div class="profile-footer-actions">
+                  <button class="btn btn-secondary btn-block" onclick="window.nextAuthStep(3); window.switchFlow('auth');">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    <span>Change Password</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- TAB 8: SAFETY & POLICY LIBRARY -->
+            <div class="tab-panel" id="tabLibrary">
+              <div class="panel-header-row">
+                <div>
+                  <h2 class="section-heading">Resource Library</h2>
+                  <span class="sub-heading">CraftOS safety policies, SWMS &amp; standards</span>
+                </div>
+              </div>
+
+              <!-- Search Documents -->
+              <div class="search-input-wrap">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" placeholder="Search safety procedures &amp; manuals...">
+              </div>
+
+              <!-- Library Category Filter -->
+              <div class="filter-pill-bar">
+                <button class="filter-pill active">All Documents</button>
+                <button class="filter-pill">OH&amp;S Policies</button>
+                <button class="filter-pill">SWMS &amp; JSEAs</button>
+                <button class="filter-pill">Site Standards</button>
+              </div>
+
+              <!-- Library Document Cards -->
+              <div class="library-feed">
+                
+                <div class="library-item-card" onclick="window.openDocViewer('CraftOS Occupational Health & Safety Policy 2026', 'OH&S Policies', 'CRAFT-OHS-POL-001')">
+                  <div class="doc-icon-wrap">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  </div>
+                  <div class="doc-meta">
+                    <span class="doc-category-badge badge-ohs">OH &amp; S Policies</span>
+                    <h4 class="doc-title">CraftOS Occupational Health &amp; Safety Policy</h4>
+                    <span class="doc-info-sub">CRAFT-OHS-POL-001 &bull; PDF (2.4 MB) &bull; Updated Jun 2026</span>
+                  </div>
+                  <div class="doc-action-arrow">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  </div>
+                </div>
+
+                <div class="library-item-card" onclick="window.openDocViewer('Safe Working at Heights Procedure (SWMS)', 'SWMS & JSEAs', 'CRAFT-SWMS-014')">
+                  <div class="doc-icon-wrap">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  </div>
+                  <div class="doc-meta">
+                    <span class="doc-category-badge badge-swms">SWMS &amp; JSEAs</span>
+                    <h4 class="doc-title">Safe Working at Heights Procedure</h4>
+                    <span class="doc-info-sub">CRAFT-SWMS-014 &bull; PDF (1.8 MB) &bull; Rev 4.2</span>
+                  </div>
+                  <div class="doc-action-arrow">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  </div>
+                </div>
+
+                <div class="library-item-card" onclick="window.openDocViewer('BHP Area C Site Cardinal Rules & Emergency Protocols', 'Site Standards', 'BHP-AC-SOP-99')">
+                  <div class="doc-icon-wrap">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  </div>
+                  <div class="doc-meta">
+                    <span class="doc-category-badge badge-site">Site Standards</span>
+                    <h4 class="doc-title">BHP Area C Site Cardinal Rules &amp; Protocols</h4>
+                    <span class="doc-info-sub">BHP-AC-SOP-99 &bull; PDF (3.1 MB)</span>
+                  </div>
+                  <div class="doc-action-arrow">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Mobile Tab Navigation Bar -->
+          <nav class="app-bottom-nav">
+            <button class="bottom-tab-btn active" data-tab="dashboard" onclick="window.switchTab('dashboard')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+              <span>Dashboard</span>
+            </button>
+            <button class="bottom-tab-btn" data-tab="rosters" onclick="window.switchTab('rosters')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              <span>Rosters</span>
+            </button>
+            <button class="bottom-tab-btn" data-tab="messages" onclick="window.switchTab('messages')">
+              <div class="btn-icon-container">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span class="tab-badge-dot">1</span>
+              </div>
+              <span>Messages</span>
+            </button>
+            <button class="bottom-tab-btn" data-tab="unavailability" onclick="window.switchTab('unavailability')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>Leave</span>
+            </button>
+            <button class="bottom-tab-btn" onclick="window.toggleDrawer(true)">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              <span>More</span>
+            </button>
+          </nav>
+
+        </section>
+
+      </div>
+
+      <!-- =================================================================== -->
+      <!-- SLIDE-OVER NAVIGATION DRAWER (HAMBURGER MENU) -->
+      <!-- =================================================================== -->
+      <div class="drawer-overlay" id="drawerOverlay" onclick="window.toggleDrawer(false)"></div>
+      <aside class="app-drawer" id="appDrawer">
+        
+        <!-- Drawer Header with Worker Card -->
+        <div class="drawer-user-header">
+          <div class="drawer-avatar">CP</div>
+          <div class="drawer-user-meta">
+            <h3 class="drawer-name">Chintan Pachchigar</h3>
+            <span class="drawer-role">Boilermaker &bull; #L02737</span>
+            <span class="drawer-site">Pilbara Minerals / BHP Area C</span>
+          </div>
+          <button class="drawer-close-btn" onclick="window.toggleDrawer(false)">✕</button>
+        </div>
+
+        <!-- Drawer Navigation Links -->
+        <nav class="drawer-menu-list">
+          <button class="drawer-item" onclick="window.switchTab('dashboard'); window.toggleDrawer(false);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            <span>Dashboard</span>
+          </button>
+
+          <button class="drawer-item" onclick="window.switchTab('notifications'); window.toggleDrawer(false);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span>Notifications</span>
+            <span class="drawer-badge badge-red">2</span>
+          </button>
+
+          <button class="drawer-item" onclick="window.switchTab('messages'); window.toggleDrawer(false);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Messages &amp; Support</span>
+            <span class="drawer-badge badge-red">1</span>
+          </button>
+
+          <button class="drawer-item" onclick="window.switchTab('rosters'); window.toggleDrawer(false);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span>Work Roster</span>
+          </button>
+
+          <button class="drawer-item" onclick="window.switchTab('unavailability'); window.toggleDrawer(false);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Unavailability &amp; RNR</span>
+          </button>
+
+          <button class="drawer-item" onclick="window.switchTab('qualifications'); window.toggleDrawer(false);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            <span>Qualifications Wallet</span>
+          </button>
+
+          <button class="drawer-item" onclick="window.switchTab('profile'); window.toggleDrawer(false);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Employee Profile</span>
+          </button>
+
+          <button class="drawer-item" onclick="window.switchTab('library'); window.toggleDrawer(false);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <span>Resource Library</span>
+          </button>
+
+          <div class="drawer-divider"></div>
+
+          <button class="drawer-item text-danger" onclick="window.switchFlow('auth'); window.toggleDrawer(false); window.showToast('Logged out securely.');">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <span>Logout</span>
+          </button>
+        </nav>
+
+        <div class="drawer-footer-note">
+          <span>CraftOS ELROI v2.4.0</span>
+        </div>
+      </aside>
+
+      <!-- =================================================================== -->
+      <!-- MODALS & BOTTOM SHEETS -->
+      <!-- =================================================================== -->
+
+      <!-- MODAL 1: JOB DETAILS & MOBILIZATION DOSSIER -->
+      <div class="app-modal-backdrop hidden" id="jobDetailModal">
+        <div class="bottom-sheet-dialog">
+          <div class="sheet-handle"></div>
+          <div class="sheet-header">
+            <div class="sheet-title-group">
+              <span class="sheet-kicker" id="modalJobCode">TEST-09991</span>
+              <h3 id="modalJobTitle">Testing LV Appearance</h3>
+            </div>
+            <button class="sheet-close-btn" onclick="window.closeModal('jobDetailModal')">✕</button>
+          </div>
+
+          <div class="sheet-body">
+            <div class="detail-summary-card">
+              <div class="detail-badge-row">
+                <span class="confirmation-status-pill pill-green" id="modalConfirmationStatus">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                  <span>No confirmation action required</span>
+                </span>
+                <span class="site-status-badge badge-active">Job Status: Active</span>
+              </div>
+
+              <div class="detail-kv-grid">
+                <div class="kv-item">
+                  <span class="kv-label">Mobilisation Dates</span>
+                  <strong class="kv-val" id="modalDates">16-06-2026 – 22-06-2026</strong>
+                </div>
+                <div class="kv-item">
+                  <span class="kv-label">Assigned Role</span>
+                  <strong class="kv-val" id="modalRole">Boilermaker</strong>
+                </div>
+                <div class="kv-item">
+                  <span class="kv-label">Client Site</span>
+                  <strong class="kv-val" id="modalSite">PILBARA MINERALS</strong>
+                </div>
+                <div class="kv-item">
+                  <span class="kv-label">Days to Mobilisation</span>
+                  <strong class="kv-val text-primary" id="modalDaysMob">4 Days</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobilization Flight & Accommodation Accordion -->
+            <div class="mob-info-block">
+              <h4>Mobilisation Details</h4>
+              <div class="mob-step-item">
+                <div class="mob-step-icon">✈️</div>
+                <div class="mob-step-text">
+                  <strong>Flight QF1924 (Perth -> Newman)</strong>
+                  <span>Departs 06:15 AM Terminal 4, Perth Airport</span>
+                </div>
+              </div>
+              <div class="mob-step-item">
+                <div class="mob-step-icon">🏨</div>
+                <div class="mob-step-text">
+                  <strong>Pilgangoora Village Camp</strong>
+                  <span>Room #C-42, Ensuite Single Quarters</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sheet-actions">
+              <button class="btn btn-primary btn-block" onclick="window.closeModal('jobDetailModal'); window.openJobChat('TEST-09991', 'PILBARA MINERALS', 'Testing LV Appearance');">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <span>Ask Planning Desk About This Job</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 2: NEW CONVERSATION (TICKET CREATION) -->
+      <div class="app-modal-backdrop hidden" id="newChatModal">
+        <div class="modal-dialog-box">
+          <div class="modal-header-bar">
+            <h3>New Support Conversation</h3>
+            <button class="modal-close-btn" onclick="window.closeModal('newChatModal')">✕</button>
+          </div>
+
+          <form id="formNewChat" onsubmit="event.preventDefault(); window.submitNewConversation();">
+            <div class="modal-body-scroll">
+              <div class="form-group">
+                <label for="chatDeptSelect" class="form-label">Department *</label>
+                <select id="chatDeptSelect" class="form-select" required>
+                  <option value="Compliance">Compliance (Tickets &amp; Inductions)</option>
+                  <option value="HSE">HSE (Safety &amp; Incidents)</option>
+                  <option value="Planning" selected>Planning (Rosters &amp; Flights)</option>
+                  <option value="Recruitment">Recruitment (Contracts &amp; Rates)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="chatCategoryInput" class="form-label">Subject / Category *</label>
+                <input type="text" id="chatCategoryInput" class="form-input" placeholder="e.g. Flight times or roster shift query" minlength="5" required value="Roster Shift Query">
+                <span class="field-hint" id="categoryHint">At least 5 characters required</span>
+              </div>
+
+              <div class="form-group">
+                <label for="chatMessageInput" class="form-label">Message *</label>
+                <textarea id="chatMessageInput" class="form-textarea" rows="4" required placeholder="Describe your question or issue in detail...">I have a question about roster/job TEST-09991 – PLS – PLS – Testing LV Appearance.</textarea>
+              </div>
+            </div>
+
+            <div class="modal-footer-actions">
+              <button type="button" class="btn btn-ghost" onclick="window.closeModal('newChatModal')">Cancel</button>
+              <button type="submit" class="btn btn-primary">
+                <span>Start Conversation</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL 3: LIVE 1-ON-1 CHAT THREAD -->
+      <div class="app-modal-backdrop hidden" id="chatThreadModal">
+        <div class="full-screen-modal">
+          <div class="chat-thread-header">
+            <button class="chat-back-btn" onclick="window.closeModal('chatThreadModal')">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            </button>
+            <div class="chat-header-meta">
+              <h3 id="chatThreadDept">Compliance Desk</h3>
+              <span class="chat-status-sub" id="chatThreadSubject">Need help with TEST-09991</span>
+            </div>
+            <button class="header-icon-btn" onclick="window.showToast('Ticket marked as resolved.'); window.closeModal('chatThreadModal');">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+            </button>
+          </div>
+
+          <!-- Chat Messages Scroll Container -->
+          <div class="chat-messages-container" id="chatMessagesBox">
+            <div class="chat-system-divider"><span>Today &bull; Connected to CraftOS Operations</span></div>
+
+            <div class="chat-bubble outgoing">
+              <div class="bubble-text" id="outgoingInitMsg">I have a question about roster/job TEST-09991 – PLS – PLS – Testing LV Appearance.</div>
+              <div class="bubble-meta">
+                <span class="bubble-time">09:15 AM</span>
+                <span class="bubble-ticks">✓✓</span>
+              </div>
+            </div>
+
+            <div class="chat-bubble incoming">
+              <div class="sender-name">Sarah Jenkins &bull; Planning Coordinator</div>
+              <div class="bubble-text">Hi Chintan! Your flights are confirmed for Tuesday morning on QF1924. Your site vehicle handover is scheduled at Newman airport at 08:30 AM.</div>
+              <div class="bubble-meta"><span class="bubble-time">09:17 AM</span></div>
+            </div>
+          </div>
+
+          <!-- Chat Input Bar -->
+          <form class="chat-input-bar" id="chatInputForm" onsubmit="event.preventDefault(); window.sendChatMessage();">
+            <input type="text" id="chatTypeInput" class="chat-text-input" placeholder="Type a message to office..." required>
+            <button type="submit" class="chat-send-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL 4: BOOK UNAVAILABILITY / RNR -->
+      <div class="app-modal-backdrop hidden" id="unavailModal">
+        <div class="modal-dialog-box">
+          <div class="modal-header-bar">
+            <h3>Book Unavailability / RNR</h3>
+            <button class="modal-close-btn" onclick="window.closeModal('unavailModal')">✕</button>
+          </div>
+
+          <form id="formUnavail" onsubmit="event.preventDefault(); window.submitUnavailability();">
+            <div class="modal-body-scroll">
+              <div class="form-group">
+                <label class="form-label">Date Range *</label>
+                <div class="date-range-inputs">
+                  <input type="date" id="unavailStartDate" class="form-input" value="2026-07-10" required>
+                  <span>to</span>
+                  <input type="date" id="unavailEndDate" class="form-input" value="2026-07-15" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="unavailReason" class="form-label">Reason *</label>
+                <select id="unavailReason" class="form-select" required>
+                  <option value="Holiday">Holiday / Annual Leave</option>
+                  <option value="RNR">Rest &amp; Recovery (RNR)</option>
+                  <option value="Medical">Medical / Personal Leave</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="unavailNotes" class="form-label">Notes (Optional)</label>
+                <textarea id="unavailNotes" class="form-textarea" rows="3" placeholder="Add any details for the planning coordinator..."></textarea>
+              </div>
+            </div>
+
+            <div class="modal-footer-actions">
+              <button type="button" class="btn btn-ghost" onclick="window.closeModal('unavailModal')">Cancel</button>
+              <button type="submit" class="btn btn-primary">Save Leave Request</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL 5: UPLOAD QUALIFICATION / CERTIFICATE -->
+      <div class="app-modal-backdrop hidden" id="uploadQualModal">
+        <div class="modal-dialog-box">
+          <div class="modal-header-bar">
+            <h3>Upload Certification / Ticket</h3>
+            <button class="modal-close-btn" onclick="window.closeModal('uploadQualModal')">✕</button>
+          </div>
+
+          <form id="formUploadQual" onsubmit="event.preventDefault(); window.submitQualUpload();">
+            <div class="modal-body-scroll">
+              <div class="form-group">
+                <label for="qualTitleInput" class="form-label">Ticket / Qualification Name *</label>
+                <input type="text" id="qualTitleInput" class="form-input" placeholder="e.g. Confined Space Entry Refresher" required value="Confined Space Entry Refresher">
+              </div>
+
+              <div class="form-group">
+                <label for="qualExpiryDate" class="form-label">Expiry Date *</label>
+                <input type="date" id="qualExpiryDate" class="form-input" value="2028-06-30" required>
+              </div>
+
+              <!-- Drag & Drop Upload Simulator -->
+              <div class="upload-dropzone" onclick="window.simulateFileUpload()">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#C5221F" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <strong id="uploadFileName">Tap to choose file (PDF, PNG, JPG)</strong>
+                <span>Maximum file size: 5MB</span>
+              </div>
+            </div>
+
+            <div class="modal-footer-actions">
+              <button type="button" class="btn btn-ghost" onclick="window.closeModal('uploadQualModal')">Cancel</button>
+              <button type="submit" class="btn btn-primary">Submit for Verification</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL 6: DOCUMENT VIEWER (SAFETY POLICIES) -->
+      <div class="app-modal-backdrop hidden" id="docViewerModal">
+        <div class="modal-dialog-box">
+          <div class="modal-header-bar">
+            <h3 id="docModalTitle">Document Viewer</h3>
+            <button class="modal-close-btn" onclick="window.closeModal('docViewerModal')">✕</button>
+          </div>
+
+          <div class="modal-body-scroll">
+            <div class="doc-meta-banner">
+              <span class="doc-category-badge badge-ohs" id="docModalCategory">OH&amp;S Policies</span>
+              <span id="docModalCode">CRAFT-OHS-POL-001</span>
+            </div>
+
+            <div class="doc-simulated-content">
+              <h4>1. Purpose &amp; Scope</h4>
+              <p>CraftOS is committed to providing a safe and healthy working environment for all employees, contractors, and visitors across all remote mining and industrial client sites.</p>
+              <h4>2. Field Operator Responsibilities</h4>
+              <p>All trades personnel must adhere strictly to Take 5 hazard assessments, cardinal safety rules, and correct PPE standards at all times during operational swings.</p>
+              <h4>3. Incident Reporting</h4>
+              <p>All near-misses and hazardous conditions must be reported to the on-site HSE supervisor immediately and logged through this portal.</p>
+            </div>
+          </div>
+
+          <div class="modal-footer-actions">
+            <button type="button" class="btn btn-primary btn-block" onclick="window.showToast('Document downloaded to device.'); window.closeModal('docViewerModal');">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Download Offline Copy</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- iPhone 12 Pro Max Home Indicator Bar -->
+      <div class="phone-home-indicator"></div>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
