@@ -415,7 +415,7 @@
       reply.className = 'chat-bubble incoming';
       reply.innerHTML = `
         <div class="sender-name">CraftOS Support &bull; Live</div>
-        <div class="bubble-text">Thanks for your message, Chintan! We've received your note and will update your file shortly.</div>
+        <div class="bubble-text">Thanks for your message, Himalay! We've received your note and will update your file shortly.</div>
         <div class="bubble-meta"><span class="bubble-time">${timeStr}</span></div>
       `;
       container.appendChild(reply);
